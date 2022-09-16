@@ -1,0 +1,52 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+class TV
+{
+private:
+    int size;
+public:
+    TV(){size = 20;}
+    TV(int size){this->size = size;}
+    int getszie(){return size;}
+};
+
+class WideTV : public TV
+{
+private:
+    bool videoIn;
+public:
+    WideTV(int size, bool videoIn): TV(size){this->videoIn = videoIn;};
+    bool getVideoIn(){return videoIn;}
+};
+
+class SmartTV : public WideTV
+{
+private:
+    string ipAddr;
+public:
+    SmartTV(string ipAddr, int size) : WideTV(size, true){
+        this->ipAddr = ipAddr;
+    }
+    string getIpAddr(){return ipAddr;}
+};
+
+int main(){
+
+
+    TV tv(15);
+    cout<< "tv size = "<<tv.getszie()<<endl;
+
+    WideTV wideTV(24, true);
+    cout<< "wide tv size = "<<wideTV.getszie()<<endl;
+    cout<< "VideoIn = "<<boolalpha<< wideTV.getVideoIn()<<endl;
+
+
+    SmartTV htv("192.0.0.1",32);
+    cout<< "htv size = "<<htv.getszie()<<endl;
+    cout<< "VideoIn = "<<boolalpha<< htv.getVideoIn()<<endl;
+    cout<< "IP = "<< htv.getIpAddr()<<endl;
+}
+
+
